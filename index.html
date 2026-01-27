@@ -140,44 +140,40 @@ svg {
       </g>
 </svg>
 <script>
-  // Map travel status to fill color
-  const statusColors = {
-    "Warning": "red",
-    "Watch": "orange",
-    "Advisory": "yellow"
-  };
+async function loadCountyStatuses() {
+  const url = encodeURIComponent('https://www.in.gov/ai/dhs/dhs_travel_advisory.txt');
+  const proxyUrl = `https://api.allorigins.win/get?url=${url}`;
 
-  // Function to fetch and apply county colors
-  async function updateCountyColors() {
-    try {
-      const response = await fetch('https://www.in.gov/ai/dhs/dhs_travel_advisory.txt');
-      const text = await response.text();
+  try {
+    const response = await fetch(proxyUrl);
+    const data = await response.json();  // AllOrigins wraps the content
+    const text = data.contents;           // The actual .txt content
 
-      // Parse the XML
-      const parser = new DOMParser();
-      const xml = parser.parseFromString(text, "text/xml");
+    // parse the XML-like file
+    const parser = new DOMParser();
+    const xml = parser.parseFromString(text, "text/xml");
+    const statuses = xml.querySelectorAll("PLA_BurnBan\\.dbo\\.Status");
 
-      // Loop through each <PLA_BurnBan.dbo.Status>
-      const statuses = xml.querySelectorAll("PLA_BurnBan\\.dbo\\.Status");
-      statuses.forEach(statusNode => {
-        const county = statusNode.querySelector("county")?.textContent?.trim();
-        const travelStatus = statusNode.querySelector("travel_status")?.textContent?.trim();
+    statuses.forEach(status => {
+      const county = status.querySelector("county")?.textContent;
+      const travel = status.querySelector("travel_status")?.textContent;
 
-        if (county && travelStatus) {
-          // Find SVG path by id (assumes id matches county name)
-          const path = document.getElementById(county);
-          if (path) {
-            path.style.fill = statusColors[travelStatus] || "#e6e6e6"; // grey fallback
-          }
+      if (county) {
+        const el = document.getElementById(county);
+        if (el) {
+          if (travel === "Warning") el.style.fill = "red";
+          else if (travel === "Watch") el.style.fill = "orange";
+          else if (travel === "Advisory") el.style.fill = "yellow";
+          // else leave it default gray
         }
-      });
-    } catch (err) {
-      console.error("Error fetching or parsing travel status:", err);
-    }
+      }
+    });
+  } catch (err) {
+    console.error("Error loading statuses:", err);
   }
+}
 
-  // Run after page loads
-  window.addEventListener("DOMContentLoaded", updateCountyColors);
+loadCountyStatuses();
 </script>
 
 </body>
