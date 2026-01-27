@@ -139,6 +139,12 @@ svg {
 
       </g>
 </svg>
-
+  <script>
+    document.querySelectorAll('.county[id]').forEach(path => {
+      path.addEventListener('mouseenter', e => {
+        console.log('Hovered county id:', path.id);
+      });
+    });
+  </script>
 </body>
 </html>
