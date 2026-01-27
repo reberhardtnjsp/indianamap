@@ -1,29 +1,24 @@
-// fetch the local test file
-fetch('./data/test.txt')
+fetch('data/test.txt')
   .then(res => res.text())
   .then(text => {
-    // parse the file into county objects
     const parser = new DOMParser();
-    const xml = parser.parseFromString(text, 'text/xml');
-    const statuses = xml.getElementsByTagName('PLA_BurnBan.dbo.Status');
+    const xml = parser.parseFromString(text, "application/xml");
+    const statuses = xml.querySelectorAll("PLA_BurnBan\\.dbo\\.Status");
 
-    // loop through each county status
-    for (let i = 0; i < statuses.length; i++) {
-      const statusElem = statuses[i];
-      const countyName = statusElem.getElementsByTagName('county')[0].textContent.trim();
-      const travelStatus = statusElem.getElementsByTagName('travel_status')[0].textContent.trim();
+    statuses.forEach(s => {
+      const county = s.querySelector("county")?.textContent.trim();
+      const status = s.querySelector("travel_status")?.textContent.trim();
+      if(!county || !status) return;
 
-      // map travel status to colors
-      let color = '#e6e6e6'; // default grey
-      if (travelStatus === 'Warning') color = 'red';
-      else if (travelStatus === 'Watch') color = 'orange';
-      else if (travelStatus === 'Advisory') color = 'yellow';
+      const el = document.getElementById(county);
+      if(!el) return;
 
-      // find the SVG path by ID (assumes <path id="Adams"> etc.)
-      const countyPath = document.getElementById(countyName);
-      if (countyPath) {
-        countyPath.style.fill = color;
+      switch(status) {
+        case "Warning": el.style.fill = "red"; break;
+        case "Watch": el.style.fill = "orange"; break;
+        case "Advisory": el.style.fill = "yellow"; break;
+        default: el.style.fill = "#e6e6e6";
       }
-    }
+    });
   })
-  .catch(err => console.error('Error loading travel advisory file:', err));
+  .catch(err => console.error("Error loading travel advisory file:", err));
