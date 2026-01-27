@@ -16,18 +16,23 @@ svg {
   display: block;
 }
 
+/* ⬇️ THIS is the "county CSS" */
+.lc-layout-svg-g {
+  pointer-events: none;     /* parent group ignores mouse */
+}
+
 .lc-geo-path {
-  fill: #e6e6e6;              /* county fill */
-  stroke: #444;              /* county borders */
-  stroke-width: 1.2;         /* make borders obvious */
+  pointer-events: all;      /* each county receives mouse */
+  fill: #e6e6e6;
+  stroke: #444;
+  stroke-width: 1.2;
   vector-effect: non-scaling-stroke;
   cursor: pointer;
 }
 
 .lc-geo-path:hover {
-  fill: #ffeb3b;              /* highlight ONE county */
+  fill: #ffeb3b;
 }
-
   </style>
 </head>
 <body>
