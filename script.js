@@ -1,35 +1,53 @@
-// Fetch the travel advisory data from the text file
 fetch('https://reberhardtnjsp.github.io/indianamap/data/test.txt')
   .then(res => res.text())  // Get the text content from the file
   .then(data => {
     console.log('Data fetched successfully');
     
-    // Split the data by lines
-    let lines = data.split('\n');
+    // Log the raw data to inspect it
+    console.log('Raw Data:', data);
     
+    // Split the data by lines (you may need to try '\r\n' or '\n' based on the file type)
+    let lines = data.split('\n');
+    console.log('Lines Split:', lines.length);  // Log the number of lines to check if split works
+
     // Parse the fetched data into a usable object
     let travelStatuses = [];
     
-    // Extract each county and status from the data
-    lines.forEach(line => {
+    // Loop through each line, but we will be looking ahead to the next line too
+    for (let i = 0; i < lines.length; i++) {
+      let line = lines[i].trim();
+      console.log(`Line ${i + 1}: ${line}`);  // Log each line to inspect it
+
+      // Check if the current line contains <county>
       if (line.includes('<county>')) {
         let county = line.match(/<county>(.*?)<\/county>/);
-        let status = line.match(/<travel_status>(.*?)<\/travel_status>/);
         
+        // Check the next line for <travel_status>
+        let statusLine = lines[i + 1]?.trim();  // Get the next line if it exists
+        console.log(`Status Line: ${statusLine}`);
+        
+        let status = null;
+        if (statusLine && statusLine.includes('<travel_status>')) {
+          status = statusLine.match(/<travel_status>(.*?)<\/travel_status>/);
+        }
+        
+        // Log county and status extraction
+        console.log(`Extracted: County - ${county ? county[1] : 'None'}, Status - ${status ? status[1] : 'None'}`);
+
+        // If we have both county and status, process them
         if (county && status) {
-          // Convert the county name to lowercase to match the SVG ID
-          let countyName = county[1].trim().toLowerCase();  // lowercase county name
+          let countyName = county[1].trim().toLowerCase();
           let travelStatus = status[1].trim();
           travelStatuses.push({
             county: countyName,
             status: travelStatus
           });
-
-          // Debugging logs
-          console.log(`County: ${countyName}, Status: ${travelStatus}`);
         }
+
+        // Skip the next line since we've already checked it for status
+        i++; 
       }
-    });
+    }
 
     // Log the parsed data to check
     console.log('Parsed Travel Statuses:', travelStatuses);
