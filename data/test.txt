@@ -10,9 +10,9 @@
 <travel_status>Advisory</travel_status>
 </PLA_BurnBan.dbo.Status>
 <PLA_BurnBan.dbo.Status>
-<posted_date>2026-01-25 08:01 GMT</posted_date>
+<posted_date>2026-01-27 08:19 GMT</posted_date>
 <county>Bartholomew</county>
-<travel_status>Warning</travel_status>
+<travel_status>Watch</travel_status>
 </PLA_BurnBan.dbo.Status>
 <PLA_BurnBan.dbo.Status>
 <posted_date>2026-01-25 09:45 GMT</posted_date>
@@ -75,9 +75,9 @@
 <travel_status>Watch</travel_status>
 </PLA_BurnBan.dbo.Status>
 <PLA_BurnBan.dbo.Status>
-<posted_date>2026-01-25 00:00 GMT</posted_date>
+<posted_date>2026-01-27 07:59 GMT</posted_date>
 <county>Decatur</county>
-<travel_status>Warning</travel_status>
+<travel_status>Watch</travel_status>
 </PLA_BurnBan.dbo.Status>
 <PLA_BurnBan.dbo.Status>
 <posted_date>2026-01-26 14:22 GMT</posted_date>
@@ -115,9 +115,9 @@
 <travel_status>Watch</travel_status>
 </PLA_BurnBan.dbo.Status>
 <PLA_BurnBan.dbo.Status>
-<posted_date>2026-01-25 03:58 GMT</posted_date>
+<posted_date>2026-01-27 05:54 GMT</posted_date>
 <county>Franklin</county>
-<travel_status>Warning</travel_status>
+<travel_status>Watch</travel_status>
 </PLA_BurnBan.dbo.Status>
 <PLA_BurnBan.dbo.Status>
 <posted_date>2026-01-25 15:28 GMT</posted_date>
@@ -190,9 +190,9 @@
 <travel_status>Watch</travel_status>
 </PLA_BurnBan.dbo.Status>
 <PLA_BurnBan.dbo.Status>
-<posted_date>2026-01-26 14:06 GMT</posted_date>
+<posted_date>2026-01-27 08:37 GMT</posted_date>
 <county>Jefferson</county>
-<travel_status>Warning</travel_status>
+<travel_status>Advisory</travel_status>
 </PLA_BurnBan.dbo.Status>
 <PLA_BurnBan.dbo.Status>
 <posted_date>2026-01-25 09:17 GMT</posted_date>
@@ -235,14 +235,14 @@
 <travel_status>Watch</travel_status>
 </PLA_BurnBan.dbo.Status>
 <PLA_BurnBan.dbo.Status>
-<posted_date>2026-01-26 13:07 GMT</posted_date>
+<posted_date>2026-01-27 07:30 GMT</posted_date>
 <county>Madison</county>
 <travel_status>Watch</travel_status>
 </PLA_BurnBan.dbo.Status>
 <PLA_BurnBan.dbo.Status>
-<posted_date>2026-01-25 16:24 GMT</posted_date>
+<posted_date>2026-01-26 23:59 GMT</posted_date>
 <county>Marion</county>
-<travel_status>Warning</travel_status>
+<travel_status>Watch</travel_status>
 </PLA_BurnBan.dbo.Status>
 <PLA_BurnBan.dbo.Status>
 <posted_date>2026-01-25 14:31 GMT</posted_date>
@@ -260,9 +260,9 @@
 <travel_status>Watch</travel_status>
 </PLA_BurnBan.dbo.Status>
 <PLA_BurnBan.dbo.Status>
-<posted_date>2026-01-25 08:55 GMT</posted_date>
+<posted_date>2026-01-27 07:00 GMT</posted_date>
 <county>Monroe</county>
-<travel_status>Warning</travel_status>
+<travel_status>Watch</travel_status>
 </PLA_BurnBan.dbo.Status>
 <PLA_BurnBan.dbo.Status>
 <posted_date>2026-01-25 09:16 GMT</posted_date>
@@ -335,9 +335,9 @@
 <travel_status>Watch</travel_status>
 </PLA_BurnBan.dbo.Status>
 <PLA_BurnBan.dbo.Status>
-<posted_date>2026-01-26 15:09 GMT</posted_date>
+<posted_date>2026-01-27 05:56 GMT</posted_date>
 <county>Putnam</county>
-<travel_status>Warning</travel_status>
+<travel_status>Watch</travel_status>
 </PLA_BurnBan.dbo.Status>
 <PLA_BurnBan.dbo.Status>
 <posted_date>2026-01-26 15:37 GMT</posted_date>
@@ -360,9 +360,9 @@
 <travel_status>Watch</travel_status>
 </PLA_BurnBan.dbo.Status>
 <PLA_BurnBan.dbo.Status>
-<posted_date>2026-01-25 05:46 GMT</posted_date>
+<posted_date>2026-01-27 05:40 GMT</posted_date>
 <county>Shelby</county>
-<travel_status>Warning</travel_status>
+<travel_status>Watch</travel_status>
 </PLA_BurnBan.dbo.Status>
 <PLA_BurnBan.dbo.Status>
 <posted_date>2026-01-25 11:52 GMT</posted_date>
@@ -415,17 +415,17 @@
 <travel_status>Watch</travel_status>
 </PLA_BurnBan.dbo.Status>
 <PLA_BurnBan.dbo.Status>
-<posted_date>2026-01-25 15:19 GMT</posted_date>
+<posted_date>2026-01-27 09:48 GMT</posted_date>
 <county>Vermillion</county>
-<travel_status>Warning</travel_status>
+<travel_status>Advisory</travel_status>
 </PLA_BurnBan.dbo.Status>
 <PLA_BurnBan.dbo.Status>
-<posted_date>2026-01-25 12:32 GMT</posted_date>
+<posted_date>2026-01-27 07:54 GMT</posted_date>
 <county>Vigo</county>
-<travel_status>Warning</travel_status>
+<travel_status>Advisory</travel_status>
 </PLA_BurnBan.dbo.Status>
 <PLA_BurnBan.dbo.Status>
-<posted_date>2026-01-25 20:09 GMT</posted_date>
+<posted_date>2026-01-27 08:42 GMT</posted_date>
 <county>Wabash</county>
 <travel_status>Watch</travel_status>
 </PLA_BurnBan.dbo.Status>
@@ -435,14 +435,14 @@
 <travel_status>Watch</travel_status>
 </PLA_BurnBan.dbo.Status>
 <PLA_BurnBan.dbo.Status>
-<posted_date>2026-01-25 08:11 GMT</posted_date>
+<posted_date>2026-01-27 07:39 GMT</posted_date>
 <county>Warrick</county>
-<travel_status>Warning</travel_status>
+<travel_status>Watch</travel_status>
 </PLA_BurnBan.dbo.Status>
 <PLA_BurnBan.dbo.Status>
-<posted_date>2026-01-24 23:47 GMT</posted_date>
+<posted_date>2026-01-27 08:51 GMT</posted_date>
 <county>Washington</county>
-<travel_status>Warning</travel_status>
+<travel_status>Watch</travel_status>
 </PLA_BurnBan.dbo.Status>
 <PLA_BurnBan.dbo.Status>
 <posted_date>2026-01-24 20:58 GMT</posted_date>
