@@ -1,25 +1,25 @@
 // Fetch the travel advisory data from the text file
-fetch('test.txt')
+fetch('https://reberhardtnjsp.github.io/indianamap/data/test.txt')
   .then(res => res.text())  // Get the text content from the file
   .then(data => {
     console.log('Data fetched successfully');
+    
     // Split the data by lines
     let lines = data.split('\n');
-    // Print the first 10 lines to check if data is fetched correctly
-    console.log(lines.slice(0, 10));  // Change the number as needed for more lines
     
     // Parse the fetched data into a usable object
     let travelStatuses = [];
     
-    // Extract each county and status from the data (you'll need to adjust based on format)
+    // Extract each county and status from the data
     lines.forEach(line => {
       if (line.includes('<county>')) {
         let county = line.match(/<county>(.*?)<\/county>/);
         let status = line.match(/<travel_status>(.*?)<\/travel_status>/);
         
         if (county && status) {
+          // Convert the county name to lowercase to match the SVG ID
           travelStatuses.push({
-            county: county[1].trim(),
+            county: county[1].trim().toLowerCase(),  // lowercase county name
             status: status[1].trim()
           });
         }
@@ -27,11 +27,11 @@ fetch('test.txt')
     });
 
     // Log the parsed data to check
-    console.log(travelStatuses);
+    console.log('Parsed Travel Statuses:', travelStatuses);
 
     // Now update the county colors based on status
     travelStatuses.forEach(item => {
-      let countyElement = document.getElementById(item.county);
+      let countyElement = document.getElementById(item.county);  // match lowercase county ID
       if (countyElement) {
         // Change colors based on the travel status
         switch (item.status.toLowerCase()) {
