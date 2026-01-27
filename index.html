@@ -139,12 +139,46 @@ svg {
 
       </g>
 </svg>
-  <script>
-    document.querySelectorAll('.county[id]').forEach(path => {
-      path.addEventListener('mouseenter', e => {
-        console.log('Hovered county id:', path.id);
+<script>
+  // Map travel status to fill color
+  const statusColors = {
+    "Warning": "red",
+    "Watch": "orange",
+    "Advisory": "yellow"
+  };
+
+  // Function to fetch and apply county colors
+  async function updateCountyColors() {
+    try {
+      const response = await fetch('https://www.in.gov/ai/dhs/dhs_travel_advisory.txt');
+      const text = await response.text();
+
+      // Parse the XML
+      const parser = new DOMParser();
+      const xml = parser.parseFromString(text, "text/xml");
+
+      // Loop through each <PLA_BurnBan.dbo.Status>
+      const statuses = xml.querySelectorAll("PLA_BurnBan\\.dbo\\.Status");
+      statuses.forEach(statusNode => {
+        const county = statusNode.querySelector("county")?.textContent?.trim();
+        const travelStatus = statusNode.querySelector("travel_status")?.textContent?.trim();
+
+        if (county && travelStatus) {
+          // Find SVG path by id (assumes id matches county name)
+          const path = document.getElementById(county);
+          if (path) {
+            path.style.fill = statusColors[travelStatus] || "#e6e6e6"; // grey fallback
+          }
+        }
       });
-    });
-  </script>
+    } catch (err) {
+      console.error("Error fetching or parsing travel status:", err);
+    }
+  }
+
+  // Run after page loads
+  window.addEventListener("DOMContentLoaded", updateCountyColors);
+</script>
+
 </body>
 </html>
