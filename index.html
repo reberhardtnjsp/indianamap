@@ -5,33 +5,29 @@
   <title>Indiana Map</title>
 
   <style>
-    body {
-      margin: 0;
-      background: #f5f5f5;
-    }
+body {
+  margin: 0;
+  background: #f5f5f5;
+}
 
-    svg {
-      width: 100vw;
-      height: 100vh;
-      display: block;
-    }
-
-    .lc-geo-path {
-      fill: #e0e0e0;
-      stroke: #333;
-      stroke-width: 1;
-    }
+svg {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+}
 
 .lc-geo-path {
-  fill: #e6e6e6;
-  stroke: #555;
-  stroke-width: 1;
+  fill: #e6e6e6;              /* county fill */
+  stroke: #444;              /* county borders */
+  stroke-width: 1.2;         /* make borders obvious */
   vector-effect: non-scaling-stroke;
+  cursor: pointer;
 }
 
 .lc-geo-path:hover {
-  fill: #ffeb3b;
+  fill: #ffeb3b;              /* highlight ONE county */
 }
+
   </style>
 </head>
 <body>
