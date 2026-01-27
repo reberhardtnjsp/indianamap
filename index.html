@@ -1,27 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Indiana Map</title>
-
+  <meta charset="UTF-8">
+  <title>Indiana Counties Map</title>
   <style>
-body {
-  margin: 0;
-  background: #f5f5f5;
-}
+    body {
+      margin: 0;
+      background: #f5f5f5;
+    }
 
-svg {
-  width: 100vw;
-  height: 100vh;
-  display: block;
-}
+    svg {
+      width: 100vw;
+      height: 100vh;
+      display: block;
+    }
 
-    #my-county {
-  fill: red;
-}
-#my-county:hover {
-  fill: orange; /* optional hover effect */
-}
+    /* default county style */
+    .county {
+      fill: #e6e6e6;       /* light gray fill */
+      stroke: #555;         /* dark gray outline */
+      stroke-width: 1;
+      vector-effect: non-scaling-stroke; /* outline stays same width when zoomed */
+      transition: fill 0.2s, stroke 0.2s;
+      cursor: pointer;
+    }
+
+    /* hover effect for all counties */
+    .county:hover {
+      fill: #ffeb3b;        /* yellow on hover */
+      stroke: #000;          /* dark outline on hover */
+      stroke-width: 2;
+    }
+
 
   </style>
 </head>
@@ -35,7 +45,7 @@ svg {
 
 
 <g class="lc-layout-svg-g" transform="translate(0, 0)"><!----><!----><!----><!----><!---->
-  <path id='my-county' d="M391.055,352.802L405.174,350.868L433.598,347.435L436.726,378.194L424.668,379.763L425.73,388.2L419.542,392.768L396.175,395.981L395.926,393.973Z" class="lc-geo-path stroke-muted-foreground stroke-1 transition-all duration-300 hover:cursor-pointer hover:stroke-black dark:hover:stroke-white hover:stroke-2" style="fill: rgb(255, 255, 255); stroke-opacity: 0.5;"></path><!----><!----> 
+  <path id="test" class="county" d="M391.055,352.802L405.174,350.868L433.598,347.435L436.726,378.194L424.668,379.763L425.73,388.2L419.542,392.768L396.175,395.981L395.926,393.973Z" class="lc-geo-path stroke-muted-foreground stroke-1 transition-all duration-300 hover:cursor-pointer hover:stroke-black dark:hover:stroke-white hover:stroke-2" style="fill: rgb(255, 255, 255); stroke-opacity: 0.5;"></path><!----><!----> 
   <path d="M223.244,206.722L220.184,172.238L247.235,169.825L264.856,168.182L267.479,192.512L268.79,204.714L223.431,208.73Z" class="lc-geo-path stroke-muted-foreground stroke-1 transition-all duration-300 hover:cursor-pointer hover:stroke-black dark:hover:stroke-white hover:stroke-2" style="fill: rgb(255, 255, 255); stroke-opacity: 0.5;"></path><!----><!---->
   <path d="M314.587,242.373L362.256,237.26L366.252,272.948L357.129,274.157L318.208,278.246Z" class="lc-geo-path stroke-muted-foreground stroke-1 transition-all duration-300 hover:cursor-pointer hover:stroke-black dark:hover:stroke-white hover:stroke-2" style="fill: rgb(255, 255, 255); stroke-opacity: 0.5;"></path><!----><!---->
   <path d="M359.627,356.674L373.371,354.994L391.055,352.802L395.926,393.973L370.499,396.788L365.004,397.406L361.819,369.061Z" class="lc-geo-path stroke-muted-foreground stroke-1 transition-all duration-300 hover:cursor-pointer hover:stroke-black dark:hover:stroke-white hover:stroke-2" style="fill: rgb(255, 255, 255); stroke-opacity: 0.5;"></path><!----><!---->
