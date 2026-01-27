@@ -18,10 +18,15 @@ fetch('https://reberhardtnjsp.github.io/indianamap/data/test.txt')
         
         if (county && status) {
           // Convert the county name to lowercase to match the SVG ID
+          let countyName = county[1].trim().toLowerCase();  // lowercase county name
+          let travelStatus = status[1].trim();
           travelStatuses.push({
-            county: county[1].trim().toLowerCase(),  // lowercase county name
-            status: status[1].trim()
+            county: countyName,
+            status: travelStatus
           });
+
+          // Debugging logs
+          console.log(`County: ${countyName}, Status: ${travelStatus}`);
         }
       }
     });
@@ -32,6 +37,8 @@ fetch('https://reberhardtnjsp.github.io/indianamap/data/test.txt')
     // Now update the county colors based on status
     travelStatuses.forEach(item => {
       let countyElement = document.getElementById(item.county);  // match lowercase county ID
+      console.log(`Checking county: ${item.county} (Element found: ${countyElement ? 'Yes' : 'No'})`);
+      
       if (countyElement) {
         // Change colors based on the travel status
         switch (item.status.toLowerCase()) {
