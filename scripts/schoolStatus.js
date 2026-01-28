@@ -13,9 +13,11 @@ async function loadSchoolData() {
 
     // Debugging: Loop through each school in the JSON and show its generated circle ID
     data.forEach(school => {
-        const schoolName = school.record[0].forced_organization_name;
-        const formattedSchoolName = schoolName.replace(/\s+/g, '-').toLowerCase();
-        console.log(`School: ${schoolName}, Generated Circle ID: ${formattedSchoolName}`);
+        school.record.forEach(record => {
+            const schoolName = record.forced_organization_name;
+            const formattedSchoolName = schoolName.replace(/\s+/g, '-').toLowerCase();
+            console.log(`School: ${schoolName}, Generated Circle ID: ${formattedSchoolName}`);
+        });
     });
 
     // Iterate over each circle in the SVG
@@ -24,31 +26,36 @@ async function loadSchoolData() {
 
         // Find the corresponding school data based on circle ID
         const school = data.find(school => {
-            const schoolName = school.record[0].forced_organization_name;
-            const formattedSchoolName = schoolName.replace(/\s+/g, '-').toLowerCase();
-            return formattedSchoolName === circleId;
+            return school.record.some(record => {
+                const schoolName = record.forced_organization_name;
+                const formattedSchoolName = schoolName.replace(/\s+/g, '-').toLowerCase();
+                return formattedSchoolName === circleId;
+            });
         });
 
         // If a matching school is found
         if (school) {
-            const status = school.record[0].forced_status_name.toLowerCase();
-            let circleColor = 'green'; // Default color (green)
+            // Loop through each record for this school (as there may be multiple)
+            school.record.forEach(record => {
+                const status = record.forced_status_name.toLowerCase();
+                let circleColor = 'green'; // Default color (green)
 
-            // Check for eLearning, online, or synchronous status (Blue)
-            if (status.includes('elearning') || status.includes('online') || status.includes('synchronous')) {
-                circleColor = 'blue';
-            }
-            // Check for 2-hour delay (Yellow)
-            else if (status.includes('2-hour delay') || status.includes('starting 2 hours late')) {
-                circleColor = 'yellow';
-            }
-            // Check for Closed status without eLearning (Red)
-            else if (status.includes('closed') && !status.includes('elearning') && !status.includes('online')) {
-                circleColor = 'red';
-            }
+                // Check for eLearning, online, or synchronous status (Blue)
+                if (status.includes('elearning') || status.includes('online') || status.includes('synchronous')) {
+                    circleColor = 'blue';
+                }
+                // Check for 2-hour delay (Yellow)
+                else if (status.includes('2-hour delay') || status.includes('starting 2 hours late')) {
+                    circleColor = 'yellow';
+                }
+                // Check for Closed status without eLearning (Red)
+                else if (status.includes('closed') && !status.includes('elearning') && !status.includes('online')) {
+                    circleColor = 'red';
+                }
 
-            // Set the color of the circle
-            circle.setAttribute('fill', circleColor);
+                // Set the color of the circle
+                circle.setAttribute('fill', circleColor);
+            });
         } else {
             // If no matching school is found, set the circle to green by default
             circle.setAttribute('fill', 'green');
