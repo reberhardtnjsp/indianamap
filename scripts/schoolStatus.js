@@ -1,25 +1,28 @@
-// schoolStatus.js
-
 // Function to fetch the data and change circle color based on school status
 async function loadSchoolData() {
     // Fetch the JSON file containing school data (wndu.json)
     const response = await fetch('data/wndu.json');
     const data = await response.json();
 
+    // Log the fetched data for debugging purposes
+    console.log("Fetched data: ", data);
+
     // Iterate through the data and update circle colors based on the forced_status_name
     data.forEach(school => {
-        // Example: Get the school name and forced status
         const schoolName = school.record[0].forced_organization_name;
         const status = school.record[0].forced_status_name.toLowerCase();
 
         // Generate the circle ID based on the school name (replace spaces with hyphens)
         const circleId = schoolName.replace(/\s+/g, '-').toLowerCase();
 
+        console.log(`Circle ID: ${circleId}`);  // Log the generated circle ID
+
         // Find the corresponding circle by the generated ID
         const circle = document.getElementById(circleId);
 
-        // If the circle exists and we have a valid status
         if (circle) {
+            console.log(`Found circle for ${schoolName}`);  // Log if the circle was found
+
             // Default color (Green) if no specific condition is met
             let circleColor = 'green';
 
@@ -38,9 +41,11 @@ async function loadSchoolData() {
 
             // Set the color of the circle
             circle.setAttribute('fill', circleColor);
+        } else {
+            console.log(`No circle found for ${schoolName}`);  // Log if no circle was found for the school
         }
     });
 }
 
 // Call the function to load the data and update circle colors
-loadSchoolData();
+window.onload = loadSchoolData;
