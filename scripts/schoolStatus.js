@@ -7,24 +7,32 @@ async function loadSchoolData() {
     // Log the fetched data for debugging purposes
     console.log("Fetched data: ", data);
 
-    // Iterate through the data and update circle colors based on the forced_status_name
+    // Get all circles in the SVG
+    const allCircles = document.querySelectorAll('circle');
+    console.log("All circles in the SVG: ", allCircles);
+
+    // Debugging: Loop through each school in the JSON and show its generated circle ID
     data.forEach(school => {
         const schoolName = school.record[0].forced_organization_name;
-        const status = school.record[0].forced_status_name.toLowerCase();
+        const formattedSchoolName = schoolName.replace(/\s+/g, '-').toLowerCase();
+        console.log(`School: ${schoolName}, Generated Circle ID: ${formattedSchoolName}`);
+    });
 
-        // Generate the circle ID based on the school name (replace spaces with hyphens)
-        const circleId = schoolName.replace(/\s+/g, '-').toLowerCase();
+    // Iterate over each circle in the SVG
+    allCircles.forEach(circle => {
+        const circleId = circle.id; // Get the ID of the circle
 
-        console.log(`Circle ID: ${circleId}`);  // Log the generated circle ID
+        // Find the corresponding school data based on circle ID
+        const school = data.find(school => {
+            const schoolName = school.record[0].forced_organization_name;
+            const formattedSchoolName = schoolName.replace(/\s+/g, '-').toLowerCase();
+            return formattedSchoolName === circleId;
+        });
 
-        // Find the corresponding circle by the generated ID
-        const circle = document.getElementById(circleId);
-
-        if (circle) {
-            console.log(`Found circle for ${schoolName}`);  // Log if the circle was found
-
-            // Default color (Green) if no specific condition is met
-            let circleColor = 'green';
+        // If a matching school is found
+        if (school) {
+            const status = school.record[0].forced_status_name.toLowerCase();
+            let circleColor = 'green'; // Default color (green)
 
             // Check for eLearning, online, or synchronous status (Blue)
             if (status.includes('elearning') || status.includes('online') || status.includes('synchronous')) {
@@ -42,10 +50,11 @@ async function loadSchoolData() {
             // Set the color of the circle
             circle.setAttribute('fill', circleColor);
         } else {
-            console.log(`No circle found for ${schoolName}`);  // Log if no circle was found for the school
+            // If no matching school is found, set the circle to green by default
+            circle.setAttribute('fill', 'green');
         }
     });
 }
 
-// Call the function to load the data and update circle colors
+// Call the function to load the data and update circle colors when the page loads
 window.onload = loadSchoolData;
